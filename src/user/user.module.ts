@@ -9,6 +9,6 @@ import { userProviders } from "./user.providers";
   providers: [
     UserService,
     ...userProviders,
-  ]
+  ],
 })
 export class UserModule {}
