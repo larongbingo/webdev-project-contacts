@@ -1,0 +1,2 @@
+
+export const sequelizeDatabase = "SEQUELIZE";
