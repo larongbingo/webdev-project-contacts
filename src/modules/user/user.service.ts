@@ -3,7 +3,7 @@ import { Op } from "sequelize";
 import { FilteredModelAttributes } from "sequelize-typescript/lib/models/Model";
 import { ICreateOptions, IFindOptions } from "sequelize-typescript";
 
-import { USER_REPOSITORY } from "../constants/models";
+import { USER_REPOSITORY } from "../../constants/models";
 
 import { User } from "./user.entity";
 
