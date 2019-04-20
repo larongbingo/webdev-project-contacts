@@ -1,4 +1,5 @@
 import { Injectable, Inject } from "@nestjs/common";
+import { Op } from "sequelize";
 import { FilteredModelAttributes } from "sequelize-typescript/lib/models/Model";
 import { ICreateOptions, IFindOptions } from "sequelize-typescript";
 
@@ -22,5 +23,9 @@ export class UserService {
 
   public async findAll(options?: IFindOptions<User>) {
     return this.USER.findAll(options);
+  }
+
+  public async findOneByToken(token: string) {
+    return this.USER.findOne({where: {token: {[Op.eq]: token}}});
   }
 }
