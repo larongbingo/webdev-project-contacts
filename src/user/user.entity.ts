@@ -19,4 +19,7 @@ export class User extends Model<User> {
 
   @Column(DataType.STRING)
   public password: string;
+
+  @Column(DataType.STRING)
+  public token: string;
 }
