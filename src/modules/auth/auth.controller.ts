@@ -1,17 +1,15 @@
 import { Controller, Get, UseGuards, Headers, Body, Post, UnprocessableEntityException } from "@nestjs/common";
 import { sign } from "jsonwebtoken";
 import { AuthGuard } from "@nestjs/passport";
-import { compare } from "bcrypt";
-import { Op } from "sequelize";
 
 import { JWT_PRIVATE_KEY } from "../../constants/jsonwebtokens";
 import { CredentialsDto } from "./dto/credentials.dto";
-import { UserService } from "../user/user.service";
+import { AuthService } from "./auth.service";
 
 @Controller("auth")
 export class AuthController {
   constructor(
-    private readonly userService: UserService,
+    private readonly authService: AuthService,
   ) {}
 
   @Get("verify")
@@ -22,9 +20,10 @@ export class AuthController {
 
   @Post()
   public async login(@Body() credentialDto: CredentialsDto) {
-    const user = await this.userService.findOne({where: {username: {[Op.eq]: credentialDto.username}}});
-    if (!user || !await compare(credentialDto.password, user.password)) {
-      return new UnprocessableEntityException("Incorrect username/password");
+    const user = await this.authService.validateCredentials(credentialDto.username, credentialDto.password);
+
+    if (!user) {
+      return new UnprocessableEntityException("Incorrect Username/Password");
     }
 
     user.token = sign({username: user.username, id: user.id}, JWT_PRIVATE_KEY);
