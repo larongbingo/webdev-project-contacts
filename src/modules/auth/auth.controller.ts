@@ -5,7 +5,7 @@ import { AuthGuard } from "@nestjs/passport";
 export class AuthController {
   @Get("verify")
   @UseGuards(AuthGuard("bearer"))
-  public async verifySession(@Headers("Authentication") sessionToken: string) {
+  public async verifySession(@Headers("Authorization") sessionToken: string) {
     return {sessionToken};
   }
 }
