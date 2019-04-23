@@ -18,7 +18,7 @@ export class AuthService {
 
   public async validateCredentials(username: string, password: string): Promise<User | null> {
     const user = await this.userService.findOne({where: {username: {[Op.eq]: username}}});
-    if (!user || !await this.bcryptRepositoryService.compare(password, password)) {
+    if (!user || !await this.bcryptRepositoryService.compare(password, user.password)) {
       return null;
     }
     return user;
