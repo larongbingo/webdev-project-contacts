@@ -19,7 +19,7 @@ export class UserController {
 
   @Put()
   @UseGuards(AuthGuard("bearer"))
-  public async update(@Body() createUserDto: CreateUserDto, @Headers("Authorization") token: string) {
+  public async update(@Body() createUserDto: CreateUserDto, @Headers("authorization") token: string) {
     const user = await this.userService.findOneByToken(token.split(" ")[1]);
     if (!user) {
       return new BadRequestException();

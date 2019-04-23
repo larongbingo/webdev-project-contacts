@@ -15,8 +15,8 @@ export class AuthController {
 
   @Get("verify")
   @UseGuards(AuthGuard("bearer"))
-  public async verifySession(@Headers("Authorization") sessionToken: string) {
-    return {sessionToken};
+  public async verifySession(@Headers("authorization") sessionToken: string) {
+    return {isSessionValid: true, sessionToken};
   }
 
   @Post()
