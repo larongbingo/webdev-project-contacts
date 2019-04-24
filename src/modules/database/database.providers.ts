@@ -1,10 +1,11 @@
+import { Provider } from "@nestjs/common";
 import { Sequelize } from "sequelize-typescript";
 
 import { sequelizeDatabase } from "../../constants/database";
 import { User } from "src/modules/user/user.entity";
 import { Message } from "../messages/message.entity";
 
-export const databaseProviders = [
+export const databaseProviders: Provider[] = [
   {
     provide: sequelizeDatabase,
     useFactory: async () => {
