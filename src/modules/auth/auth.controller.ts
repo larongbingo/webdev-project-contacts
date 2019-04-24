@@ -16,7 +16,7 @@ export class AuthController {
   @Get("verify")
   @UseGuards(AuthGuard("bearer"))
   public async verifySession(@Headers("authorization") sessionToken: string) {
-    return {isSessionValid: true, sessionToken};
+    return {iat: Date.now(), isSessionValid: true, sessionToken};
   }
 
   @Put()
@@ -40,6 +40,6 @@ export class AuthController {
     user.token = sign({username: user.username, id: user.id}, JWT_PRIVATE_KEY);
     user.save();
 
-    return {token: user.token};
+    return {iat: Date.now(), token: user.token};
   }
 }
