@@ -20,6 +20,7 @@ export class AuthController {
   }
 
   @Put()
+  @UseGuards(AuthGuard("bearer"))
   public async logOut(@Headers("authorization") sessionToken: string) {
     const user = await this.authService.validateUser(sessionToken);
     user.token = null;
