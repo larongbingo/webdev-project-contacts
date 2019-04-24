@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards, Headers, Body, Post, UnprocessableEntityException, UsePipes } from "@nestjs/common";
+import { Controller, Get, UseGuards, Headers, Body, Post, UnprocessableEntityException, UsePipes, Put } from "@nestjs/common";
 import { sign } from "jsonwebtoken";
 import { AuthGuard } from "@nestjs/passport";
 
@@ -17,6 +17,14 @@ export class AuthController {
   @UseGuards(AuthGuard("bearer"))
   public async verifySession(@Headers("authorization") sessionToken: string) {
     return {isSessionValid: true, sessionToken};
+  }
+
+  @Put()
+  public async logOut(@Headers("authorization") sessionToken: string) {
+    const user = await this.authService.validateUser(sessionToken);
+    user.token = null;
+    user.save();
+    return {iat: Date.now()};
   }
 
   @Post()
