@@ -12,6 +12,7 @@ export class UserController {
   ) {}
 
   @Post()
+  @UseGuards(AuthGuard("bearer"))
   public async register(@Body() createUserDto: CreateUserDto) {
     const user = await this.userService.create({...createUserDto});
     return {id: user.id};
