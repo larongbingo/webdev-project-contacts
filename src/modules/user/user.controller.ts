@@ -1,10 +1,10 @@
-import { Controller, Post, Body, UseGuards, Put, Headers, BadRequestException } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { Controller, Post, Body, UseGuards, Put, Headers, BadRequestException } from "@nestjs/common";
+import { AuthGuard } from "@nestjs/passport";
 
 import { CreateUserDto } from "./dto/create-user.dto";
-import { UserService } from './user.service';
+import { UserService } from "./user.service";
 
-@Controller('user')
+@Controller("user")
 export class UserController {
 
   constructor(
