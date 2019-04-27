@@ -14,16 +14,6 @@ module.exports = {
         token: {
           type: Sequelize.STRING,
         },
-        createdAt: {
-          type: Sequelize.DATE,
-        },
-        updatedAt: {
-          type: Sequelize.DATE,
-        },
-        deletedAt: {
-          type: Sequelize.DATE,
-          allowNull: true,
-        },
       },
     );
   },

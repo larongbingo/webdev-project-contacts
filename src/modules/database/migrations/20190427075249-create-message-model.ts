@@ -17,16 +17,6 @@ module.exports = {
         isRead: {
           type: Sequelize.BOOLEAN,
         },
-        createdAt: {
-          type: Sequelize.DATE,
-        },
-        updatedAt: {
-          type: Sequelize.DATE,
-        },
-        deletedAt: {
-          type: Sequelize.DATE,
-          allowNull: true,
-        },
       },
     );
   },
