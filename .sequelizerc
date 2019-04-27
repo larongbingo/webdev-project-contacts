@@ -1,0 +1,9 @@
+// tslint:disable-next-line: no-var-requires
+let path = require("path");
+
+module.exports = {
+  "config":          path.resolve("dist", "modules", "database", "config.js"),
+  "migrations-path": path.resolve("dist", "modules", "database", "migrations"),
+  "models-path":     path.resolve("dist", "modules", "database", "models"),
+  "seeders-path":    path.resolve("dist", "modules", "database", "seeders"),
+};
