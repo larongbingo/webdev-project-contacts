@@ -38,6 +38,9 @@ export class MessageController {
   @Get(":messageId")
   @UseGuards(AuthGuard("bearer"))
   public async getMessageDetails(@Param("messageId") messageId: string) {
-    return await this.MESSAGE_SERVICE.findOne({where: {id: {[Op.eq]: messageId}}});
+    const message = await this.MESSAGE_SERVICE.findOne({where: {id: {[Op.eq]: messageId}}});
+    message.isRead = true;
+    await message.save();
+    return message;
   }
 }
