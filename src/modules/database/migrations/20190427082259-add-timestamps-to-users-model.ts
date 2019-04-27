@@ -7,14 +7,14 @@ module.exports = {
         "users",
         "createdAt",
         {
-          type: Sequelize.DATE,
+          type: Sequelize.DATEONLY,
         },
       ),
       queryInterface.addColumn(
         "users",
         "updatedAt",
         {
-          type: Sequelize.DATE,
+          type: Sequelize.DATEONLY,
         },
       ),
       queryInterface.addColumn(

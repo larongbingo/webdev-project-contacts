@@ -7,14 +7,14 @@ module.exports = {
         "messages",
         "createdAt",
         {
-          type: Sequelize.DATE,
+          type: Sequelize.DATEONLY,
         },
       ),
       queryInterface.addColumn(
         "messages",
         "updatedAt",
         {
-          type: Sequelize.DATE,
+          type: Sequelize.DATEONLY,
         },
       ),
       queryInterface.addColumn(
