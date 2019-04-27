@@ -2,7 +2,7 @@ import { QueryInterface, SequelizeStatic } from "sequelize";
 
 module.exports = {
   up: (queryInterface: QueryInterface, Sequelize: SequelizeStatic) => {
-    return [
+    return Promise.all([
       queryInterface.addColumn(
         "messages",
         "createdAt",
@@ -25,14 +25,14 @@ module.exports = {
           allowNull: true,
         },
       ),
-    ];
+    ]);
   },
 
   down: (queryInterface: QueryInterface, Sequelize: SequelizeStatic) => {
-    return [
+    return Promise.all([
       queryInterface.removeColumn("messages", "createdAt"),
       queryInterface.removeColumn("messages", "updatedAt"),
       queryInterface.removeColumn("messages", "deletedAt"),
-    ];
+    ]);
   },
 };
