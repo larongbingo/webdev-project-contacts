@@ -3,6 +3,7 @@ import { Model, DataType, Column, Table } from "sequelize-typescript";
 @Table({
   tableName: "messages",
   paranoid: true,
+  timestamps: true,
 })
 export class Message extends Model<Message> {
   @Column(DataType.STRING)

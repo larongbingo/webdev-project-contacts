@@ -5,6 +5,7 @@ import { Op } from "sequelize";
 @Table({
   tableName: "users",
   paranoid: true,
+  timestamps: true,
 })
 export class User extends Model<User> {
   @BeforeCreate
