@@ -5,6 +5,9 @@ module.exports = {
     return queryInterface.createTable(
       "messages", 
       {
+        id: {
+          type: Sequelize.INTEGER,
+        },
         title: {
           type: Sequelize.STRING,
         },

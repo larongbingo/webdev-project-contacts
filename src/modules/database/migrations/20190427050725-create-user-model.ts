@@ -5,6 +5,9 @@ module.exports = {
     return queryInterface.createTable(
       "users",
       {
+        id: {
+          type: Sequelize.INTEGER,
+        },
         username: {
           type: Sequelize.STRING,
         },
