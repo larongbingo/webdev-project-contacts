@@ -21,16 +21,21 @@ export class MessageController {
   @Get()
   @UseGuards(AuthGuard("bearer"))
   public async findAllMessages(@Query() findMessageDto: FindMessageDto) {
-    const messages = await this.MESSAGE_SERVICE.findAll({
+    const messagePromises = await this.MESSAGE_SERVICE.findAll({
       where: {
         email: (findMessageDto.email) ? { [Op.like]: `%${findMessageDto.email}%` } : null,
         title: (findMessageDto.title) ? { [Op.like]: `%${findMessageDto.title}%` } : null,
         message: (findMessageDto.message) ? { [Op.like]: `%${findMessageDto.message}%` } : null,
       },
     });
-    // tslint:disable-next-line: prefer-for-of
-    for (let i = 0; i < messages.length; i++) {
-      messages[i].message = messages[i].message.substring(0, 30);
+    const messages = [];
+    for (const messagePromise of messagePromises) {
+      messages.push({
+        message: messagePromise.message.substring(0, 30),
+        title: messagePromise.title,
+        email: messagePromise.email,
+        createdAt: messagePromise.createdAt,
+      });
     }
     return messages;
   }
