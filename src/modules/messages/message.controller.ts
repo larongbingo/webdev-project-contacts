@@ -23,9 +23,9 @@ export class MessageController {
   public async findAllMessages(@Query() findMessageDto: FindMessageDto) {
     const messagePromises = await this.MESSAGE_SERVICE.findAll({
       where: {
-        email: (findMessageDto.email) ? { [Op.like]: `%${findMessageDto.email}%` } : null,
-        title: (findMessageDto.title) ? { [Op.like]: `%${findMessageDto.title}%` } : null,
-        message: (findMessageDto.message) ? { [Op.like]: `%${findMessageDto.message}%` } : null,
+        email: { [Op.like]: `%${findMessageDto.email ? findMessageDto.email : ""}%` },
+        title: { [Op.like]: `%${findMessageDto.title ? findMessageDto.title : ""}%` },
+        message: { [Op.like]: `%${findMessageDto.message ? findMessageDto.message : ""}%` },
       },
     });
     const messages = [];
