@@ -35,6 +35,8 @@ export class MessageController {
         title: messagePromise.title,
         email: messagePromise.email,
         createdAt: messagePromise.createdAt,
+        isRead: messagePromise.isRead,
+        id: messagePromise.id,
       });
     }
     return messages;
