@@ -1,4 +1,4 @@
-import { Controller, Body, Post, Get, UseGuards, Query, Param } from "@nestjs/common";
+import { Controller, Body, Post, Get, UseGuards, Query, Param, BadRequestException } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { Op } from "sequelize";
 
@@ -46,6 +46,9 @@ export class MessageController {
   @UseGuards(AuthGuard("bearer"))
   public async getMessageDetails(@Param("messageId") messageId: string) {
     const message = await this.MESSAGE_SERVICE.findOne({where: {id: {[Op.eq]: messageId}}});
+    if (!message) {
+      throw new BadRequestException(`Message ID of ${messageId} does not exist`);
+    }
     message.isRead = true;
     await message.save();
     return message;
